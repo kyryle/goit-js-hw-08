@@ -95,7 +95,7 @@ ulGallery.addEventListener("click", event => {
 function showModal(originalData, imageAlt) {
   const instance = basicLightbox.create(`
     <div>
-    <img src="${originalData}" alt ="${imageAlt}">
+    <img src="${originalData}" alt ="${imageAlt}" width="640px">
     </div>
 `)
 
