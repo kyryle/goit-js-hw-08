@@ -66,14 +66,14 @@ const images = [
 
 const ulGallery = document.querySelector('ul.gallery')
 
-function imageTemplate(image){
+function imageTemplate({preview, original, description}){
   return `<li>
-            <a class="gallery-link" href="${images.original}">
+            <a class="gallery-link" href="${original}">
               <img
               class="gallery-pictures"
-              src="${image.preview}" 
-              alt="${image.description}"
-              data-source="${images.original}"></img>
+              src="${preview}" 
+              alt="${description}"
+              data-source="${original}">
             </a>
           </li>`
 }
@@ -81,23 +81,23 @@ function imagesTemplate(images){
 	return images.map(imageTemplate).join('')
 }
 
-const markup = imagesTemplate(images)
-ulGallery.innerHTML = markup
+ulGallery.innerHTML = imagesTemplate(images)
 
 ulGallery.addEventListener("click", event => {
-  if (event.target !== li) {
-    return
-  }
+  event.preventDefault()
+  if (event.target.tagName !== "IMG") { return }
+  const originalData = event.target.dataset.source
+  const imageAlt = event.target.alt
+  showModal(originalData)
 })
 
 
-// const modal = basicLightbox.create(`
-//     <div class="modal">
-//         <p>
-//             Your first lightbox with just a few lines of code.
-//             Yes, it's really that simple.
-//         </p>
-//     </div>
-// `)
+function showModal(originalData, imageAlt) {
+  const instance = basicLightbox.create(`
+    <div>
+    <img src="${originalData}" alt ="${imageAlt}">
+    </div>
+`)
 
-// modal.show()
+instance.show()
+}
