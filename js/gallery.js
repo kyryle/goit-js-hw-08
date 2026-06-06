@@ -88,7 +88,7 @@ ulGallery.addEventListener("click", event => {
   if (event.target.tagName !== "IMG") { return }
   const originalData = event.target.dataset.source
   const imageAlt = event.target.alt
-  showModal(originalData)
+  showModal(originalData, imageAlt)
 })
 
 
