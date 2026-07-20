@@ -99,5 +99,6 @@ function showModal(originalData, imageAlt) {
     </div>
 `)
 
-instance.show()
+  instance.show()
+  
 }
